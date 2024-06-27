@@ -1,0 +1,6 @@
+# Ignore the antlr jar
+*.jar
+
+# Generated ANTLR types that we don't want or need
+*.interp
+*.tokens
