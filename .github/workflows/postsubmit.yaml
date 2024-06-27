@@ -29,22 +29,11 @@ jobs:
       contents: read
       id-token: write
 
-  snapshot-release:
-    name: Snapshot Release
-    uses: friendly-fhir/.github/.github/workflows/go-release.yaml@master
-    with:
-      snapshot: true
-    permissions:
-      contents: write
-      attestations: write
-      id-token: write
-
   email-on-failure:
     name: Email on Failure
     runs-on: ubuntu-latest
     needs:
       - build-and-test
-      - snapshot-release
     if: always() && failure()
     continue-on-error: true
     steps:

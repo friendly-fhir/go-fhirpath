@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://json.schemastore.org/mkdocs-1.0.json
-site_name: Go Template
+site_name: FHIRPath Go
 copyright: Friendly FHIR Contributors 2024
-repo_name: go-template
-repo_url: https://github.com/friendly-fhir/go-template
+repo_name: go-fhirpath
+repo_url: https://github.com/friendly-fhir/go-fhirpath
 remote_branch: origin/master
 remote_name: origin
 site_author: Matthew Rodusek
 site_description: The Friendly FHIR organization
-site_url: https://friendly-fhir.github.io/go-template
+site_url: https://friendly-fhir.github.io/go-fhirpath
 site_dir: dist
 docs_dir: docs
 
