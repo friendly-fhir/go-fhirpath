@@ -1,0 +1,5 @@
+# Fallback to maintainer approval for unexpected file paths
+* @friendly-fhir/fhir-chiefs
+
+**/*.go @friendly-fhir/go-fhiring-squad
+**/*.md @friendly-fhir/fhiring-squad
