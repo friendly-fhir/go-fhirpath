@@ -1,4 +1,10 @@
 github.com/antlr4-go/antlr/v4 v4.13.1 h1:SqQKkuVZ+zWkMMNkjy5FZe5mr5WURWnlpmOuzYWrPrQ=
 github.com/antlr4-go/antlr/v4 v4.13.1/go.mod h1:GKmUxMtwp6ZgGwZSva4eWPC5mS6vUAmOABFgjdkM7Nw=
+github.com/friendly-fhir/go-fhir v0.0.0-20240627035249-eacfb3386af5 h1:D6ephfRcx17SrIHrWz2HTDu19Y6Zy1J9YTRyal0ZUnw=
+github.com/friendly-fhir/go-fhir v0.0.0-20240627035249-eacfb3386af5/go.mod h1:dHmN8TwYULp9TAOI1D0cR1RpsIntTM75Y/aUq3v9fY0=
+github.com/friendly-fhir/go-fhir v0.0.0-20240627230005-9ef2174c1f29 h1:8PXLQ1rNBD7CRPlDjJYaDFu3ZQFSsSnV5bl+3QUSs0k=
+github.com/friendly-fhir/go-fhir v0.0.0-20240627230005-9ef2174c1f29/go.mod h1:dHmN8TwYULp9TAOI1D0cR1RpsIntTM75Y/aUq3v9fY0=
+github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
+github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 h1:vr/HnozRka3pE4EsMEg1lgkXJkTFJCVUX+S/ZT6wYzM=
 golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842/go.mod h1:XtvwrStGgqGPLc4cjQfWqZHG1YFdYs6swckp8vpsjnc=
