@@ -21,6 +21,16 @@ type Tracer interface {
 	Trace(name string, collection collection.Collection) error
 }
 
+// TracerFunc is a convenience type that implements the [Tracer] abstraction.
+//
+// This enables using normal function definitions to handle custom tracing.
+type TracerFunc func(string, collection.Collection) error
+
+// Trace calls the underlying function to trace the collection.
+func (f TracerFunc) Trace(name string, collection collection.Collection) error {
+	return f(name, collection)
+}
+
 // NoopTracer is a Tracer that does nothing.
 type NoopTracer struct{}
 

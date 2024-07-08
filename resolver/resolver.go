@@ -16,6 +16,20 @@ type Resolver interface {
 	isResolver()
 }
 
+// ResolverFunc is a convenience type that implements the [Resolver] abstraction.
+//
+// This enables using normal function definitions to handle custom resolution.
+type ResolverFunc func(context.Context, string) (any, error)
+
+// Resolve calls the underlying function to resolve the reference.
+func (f ResolverFunc) Resolve(ctx context.Context, reference string) (any, error) {
+	return f(ctx, reference)
+}
+
+func (ResolverFunc) isResolver() {}
+
+var _ Resolver = (*ResolverFunc)(nil)
+
 // NoopResolver is a Resolver that does nothing.
 type NoopResolver struct {
 	BaseResolver
