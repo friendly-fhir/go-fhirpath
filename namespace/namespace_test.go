@@ -7,6 +7,7 @@ import (
 	fhir "github.com/friendly-fhir/go-fhir/r4/core"
 	"github.com/friendly-fhir/go-fhir/r4/core/resources/patient"
 	"github.com/friendly-fhir/go-fhirpath/namespace"
+	fpreflect "github.com/friendly-fhir/go-fhirpath/reflect"
 	"github.com/friendly-fhir/go-fhirpath/system"
 )
 
@@ -36,12 +37,16 @@ func TestSelect(t *testing.T) {
 			name:  "Unknown type",
 			input: reflect.TypeOf((*testing.T)(nil)),
 			want:  nil,
+		}, {
+			name:  "Reflect type",
+			input: reflect.TypeOf((*fpreflect.ClassInfo)(nil)),
+			want:  namespace.Reflect,
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := namespace.Select(tc.input, namespace.R4, namespace.System)
+			got := namespace.Select(tc.input, namespace.R4, namespace.System, namespace.Reflect)
 
 			if got != tc.want {
 				t.Errorf("namespace.Select() = %v; want %v", got, tc.want)
@@ -55,7 +60,7 @@ func TestNamespaceName(t *testing.T) {
 		name      string
 		input     reflect.Type
 		namespace *namespace.Namespace
-		want      string
+		want      fpreflect.TypeSpecifier
 	}{
 		{
 			name:      "FHIR resource",
@@ -77,6 +82,11 @@ func TestNamespaceName(t *testing.T) {
 			input:     reflect.TypeOf((*system.String)(nil)).Elem(),
 			namespace: namespace.System,
 			want:      "String",
+		}, {
+			name:      "Reflect type",
+			input:     reflect.TypeOf((*fpreflect.ClassInfo)(nil)),
+			namespace: namespace.Reflect,
+			want:      "ClassInfo",
 		},
 	}
 
@@ -105,6 +115,10 @@ func TestNamespaceString(t *testing.T) {
 			name:      "System namespace",
 			namespace: namespace.System,
 			want:      "System",
+		}, {
+			name:      "Reflect namespace",
+			namespace: namespace.Reflect,
+			want:      "Reflect",
 		},
 	}
 
@@ -124,7 +138,7 @@ func TestNamespaceQualifiedName(t *testing.T) {
 		name      string
 		input     reflect.Type
 		namespace *namespace.Namespace
-		want      string
+		want      fpreflect.TypeSpecifier
 	}{
 		{
 			name:      "FHIR resource",
@@ -146,6 +160,11 @@ func TestNamespaceQualifiedName(t *testing.T) {
 			input:     reflect.TypeOf((*system.String)(nil)).Elem(),
 			namespace: namespace.System,
 			want:      "System.String",
+		}, {
+			name:      "Reflect type",
+			input:     reflect.TypeOf((*fpreflect.ClassInfo)(nil)),
+			namespace: namespace.Reflect,
+			want:      "Reflect.ClassInfo",
 		},
 	}
 
@@ -191,6 +210,16 @@ func TestNamespaceContains(t *testing.T) {
 			name:      "System type in FHIR namespace",
 			input:     reflect.TypeOf((*system.String)(nil)).Elem(),
 			namespace: namespace.R4,
+			want:      false,
+		}, {
+			name:      "Reflect type in Reflect namespace",
+			input:     reflect.TypeOf((*fpreflect.ClassInfo)(nil)),
+			namespace: namespace.Reflect,
+			want:      true,
+		}, {
+			name:      "FHIR resource in Reflect namespace",
+			input:     reflect.TypeOf((*patient.Patient)(nil)),
+			namespace: namespace.Reflect,
 			want:      false,
 		},
 	}
